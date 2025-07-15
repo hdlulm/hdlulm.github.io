@@ -1,3 +1,37 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        alert("Your message has been sent!");
+        form.reset();
+      } else {
+        const result = await response.json();
+        const errorMsg = result.errors
+          ? result.errors.map(e => e.message).join(", ")
+          : "There was a problem submitting the form.";
+        alert(errorMsg);
+      }
+    } catch (error) {
+      alert("Failed to send message. Please check your internet connection.");
+    }
+  });
+});
+
+
 const navLinks = document.querySelectorAll('header nav a');
 const logoLink = document.querySelector('.logo');
 const sections = document.querySelectorAll('section');
@@ -117,24 +151,4 @@ arrowLeft.addEventListener('click', () => {
     arrowLeft.classList.add('disabled');
   }
   activePortfolio();
-});
-
-const form = document.querySelector("form");
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const data = new FormData(form);
-  const response = await fetch(form.action, {
-    method: "POST",
-    body: data,
-    headers: {
-      'Accept': 'application/json'
-    }
-  });
-
-  if (response.ok) {
-    alert("Your message has been sent!");
-    form.reset();
-  } else {
-    alert("There was a problem submitting the form.");
-  }
 });
