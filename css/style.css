@@ -790,8 +790,8 @@ section.active {
     padding: 10px 14px;
     border-radius: 50px;
     border: none;
-    background: #0ef;
-    color: #000;
+    background: #c4151c;
+    color: #1f242d;
     font-weight: bold;
     cursor: pointer;
 }

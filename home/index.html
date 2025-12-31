@@ -16,9 +16,6 @@
 
 <body>
 
-    <button id="musicToggle" class="music-btn">🔊 Music ON</button>
-    <div id="yt-player" style="display:none"></div>
-
     <!-- header-->
     <header class="active">
         <a href="../home/" class="logo">
@@ -74,62 +71,6 @@
             </div>
         </div>
     </section>
-
-        <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-    let player;
-    let playerReady = false;
-
-    const VIDEO_ID = "xfM4X6inBUk";
-    const enterScreen = document.getElementById("enterScreen");
-    const enterBtn = document.getElementById("enterBtn");
-    const musicBtn = document.getElementById("musicToggle");
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player("yt-player", {
-            videoId: VIDEO_ID,
-            playerVars: {
-                controls: 0,
-                loop: 1,
-                playlist: VIDEO_ID
-            },
-            events: {
-                onReady: () => playerReady = true,
-                onStateChange: (e) => {
-                    musicBtn.textContent =
-                        e.data === YT.PlayerState.PLAYING
-                            ? "🔇 Music OFF"
-                            : "🔊 Music ON";
-                }
-            }
-        });
-    }
-
-    // WAJIB KLIK ENTER
-    enterBtn.addEventListener("click", function () {
-        if (!playerReady) return;
-
-        player.playVideo();
-        player.unMute();
-        player.setVolume(20);
-
-        enterScreen.style.opacity = "0";
-        setTimeout(() => enterScreen.style.display = "none", 500);
-    });
-
-    // TOGGLE ON / OFF
-    musicBtn.addEventListener("click", function () {
-        if (!playerReady) return;
-
-        const state = player.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
-        } else {
-            player.playVideo();
-            player.unMute();
-        }
-    });
-    </script>
 
     <!-- custom js-->
     <script src="../js/script.js"></script>
