@@ -796,6 +796,23 @@ section.active {
     cursor: pointer;
 }
 
+#enterScreen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+#enterScreen button {
+    font-size: 24px;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+
 /* breakpoints */
 @media screen and (max-width: 1200px) {
   html {
