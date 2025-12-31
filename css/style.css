@@ -782,6 +782,20 @@ section.active {
   cursor: pointer;
 }
 
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 10px 14px;
+    border-radius: 50px;
+    border: none;
+    background: #0ef;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 /* breakpoints */
 @media screen and (max-width: 1200px) {
   html {
