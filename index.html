@@ -20,7 +20,6 @@
     <div id="enterScreen">
         <div class="enter-box">
             <h1>Welcome</h1>
-            <p>Click to enter & enable sound</p>
             <button id="enterBtn">Enter Website</button>
         </div>
     </div>
@@ -89,7 +88,7 @@
     let player;
     let playerReady = false;
 
-    const VIDEO_ID = "75LBllz4n5A";
+    const VIDEO_ID = "xfM4X6inBUk";
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
     const musicBtn = document.getElementById("musicToggle");
@@ -120,7 +119,7 @@
 
         player.playVideo();
         player.unMute();
-        player.setVolume(30);
+        player.setVolume(20);
 
         enterScreen.style.opacity = "0";
         setTimeout(() => enterScreen.style.display = "none", 500);
