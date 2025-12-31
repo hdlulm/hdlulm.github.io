@@ -16,8 +16,13 @@
 
 <body>
 
+    <!-- SPLASH / ENTER SCREEN -->
     <div id="enterScreen">
-        <button id="enterBtn">▶ Login</button>
+        <div class="enter-box">
+            <h1>Welcome</h1>
+            <p>Click to enter & enable sound</p>
+            <button id="enterBtn">Enter Website</button>
+        </div>
     </div>
 
     <button id="musicToggle" class="music-btn">🔊 Music ON</button>
@@ -84,22 +89,23 @@
     let player;
     let playerReady = false;
 
+    const VIDEO_ID = "75LBllz4n5A";
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
-    const toggleBtn = document.getElementById("musicToggle");
+    const musicBtn = document.getElementById("musicToggle");
 
     function onYouTubeIframeAPIReady() {
         player = new YT.Player("yt-player", {
-            videoId: "75LBllz4n5A",
+            videoId: VIDEO_ID,
             playerVars: {
                 controls: 0,
                 loop: 1,
-                playlist: "75LBllz4n5A"
+                playlist: VIDEO_ID
             },
             events: {
                 onReady: () => playerReady = true,
                 onStateChange: (e) => {
-                    toggleBtn.textContent =
+                    musicBtn.textContent =
                         e.data === YT.PlayerState.PLAYING
                             ? "🔇 Music OFF"
                             : "🔊 Music ON";
@@ -116,11 +122,12 @@
         player.unMute();
         player.setVolume(30);
 
-        enterScreen.style.display = "none";
+        enterScreen.style.opacity = "0";
+        setTimeout(() => enterScreen.style.display = "none", 500);
     });
 
-    // TOGGLE
-    toggleBtn.addEventListener("click", function () {
+    // TOGGLE ON / OFF
+    musicBtn.addEventListener("click", function () {
         if (!playerReady) return;
 
         const state = player.getPlayerState();
@@ -132,7 +139,6 @@
         }
     });
     </script>
-
     
     <!-- custom js-->
     <script src="js/script.js"></script>
