@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 const navLinks = document.querySelectorAll('header nav a');
 const logoLink = document.querySelector('.logo');
 const sections = document.querySelectorAll('section');
@@ -151,4 +150,35 @@ arrowLeft.addEventListener('click', () => {
     arrowLeft.classList.add('disabled');
   }
   activePortfolio();
+});
+
+/* ===============================
+   INSTAGRAM IN-APP BROWSER DETECTOR
+   =============================== */
+
+function isInstagramBrowser() {
+  return navigator.userAgent.includes("Instagram");
+}
+
+function openExternal() {
+  window.open(window.location.href, "_blank");
+}
+
+function closeIGWarning() {
+  const warn = document.getElementById("igWarning");
+  if (warn) warn.style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (isInstagramBrowser()) {
+    const warn = document.getElementById("igWarning");
+    if (warn) warn.style.display = "flex";
+
+    // OPTIONAL: matikan musik otomatis di IG browser
+    if (typeof player !== "undefined") {
+      try {
+        player.stopVideo();
+      } catch (e) {}
+    }
+  }
 });
