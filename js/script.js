@@ -151,39 +151,3 @@ arrowLeft.addEventListener('click', () => {
   }
   activePortfolio();
 });
-
-/* ===============================
-   BLOCK INSTAGRAM IN-APP BROWSER
-   =============================== */
-
-(function () {
-  const ua = navigator.userAgent || "";
-
-  if (ua.includes("Instagram")) {
-    document.addEventListener("DOMContentLoaded", () => {
-      const block = document.getElementById("igBlock");
-      if (block) block.style.display = "flex";
-
-      // Matikan scroll & interaksi
-      document.body.style.overflow = "hidden";
-
-      // Matikan musik / player kalau ada
-      if (typeof player !== "undefined") {
-        try { player.stopVideo(); } catch (e) {}
-      }
-    });
-  }
-})();
-
-function openExternal() {
-  // Android (kadang berhasil)
-  if (/Android/i.test(navigator.userAgent)) {
-    location.href =
-      "intent://" +
-      location.host +
-      location.pathname +
-      "#Intent;scheme=https;package=com.android.chrome;end;";
-  } else {
-    alert("Tap ⋮ (three dots) → Open in browser");
-  }
-}

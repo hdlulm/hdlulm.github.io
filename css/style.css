@@ -796,41 +796,6 @@ section.active {
     cursor: pointer;
 }
 
-.ig-warning {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999;
-}
-
-.ig-warning-box {
-  background: #111;
-  border: 2px solid red;
-  padding: 25px;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 320px;
-}
-
-.ig-warning-box h2 {
-  color: red;
-}
-
-.ig-warning-box button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background: red;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 /* ===== SPLASH SCREEN ===== */
 #enterScreen {
     position: fixed;
