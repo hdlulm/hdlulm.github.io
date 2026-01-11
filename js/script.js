@@ -153,32 +153,37 @@ arrowLeft.addEventListener('click', () => {
 });
 
 /* ===============================
-   INSTAGRAM IN-APP BROWSER DETECTOR
+   BLOCK INSTAGRAM IN-APP BROWSER
    =============================== */
 
-function isInstagramBrowser() {
-  return navigator.userAgent.includes("Instagram");
-}
+(function () {
+  const ua = navigator.userAgent || "";
+
+  if (ua.includes("Instagram")) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const block = document.getElementById("igBlock");
+      if (block) block.style.display = "flex";
+
+      // Matikan scroll & interaksi
+      document.body.style.overflow = "hidden";
+
+      // Matikan musik / player kalau ada
+      if (typeof player !== "undefined") {
+        try { player.stopVideo(); } catch (e) {}
+      }
+    });
+  }
+})();
 
 function openExternal() {
-  window.open(window.location.href, "_blank");
-}
-
-function closeIGWarning() {
-  const warn = document.getElementById("igWarning");
-  if (warn) warn.style.display = "none";
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (isInstagramBrowser()) {
-    const warn = document.getElementById("igWarning");
-    if (warn) warn.style.display = "flex";
-
-    // OPTIONAL: matikan musik otomatis di IG browser
-    if (typeof player !== "undefined") {
-      try {
-        player.stopVideo();
-      } catch (e) {}
-    }
+  // Android (kadang berhasil)
+  if (/Android/i.test(navigator.userAgent)) {
+    location.href =
+      "intent://" +
+      location.host +
+      location.pathname +
+      "#Intent;scheme=https;package=com.android.chrome;end;";
+  } else {
+    alert("Tap ⋮ (three dots) → Open in browser");
   }
-});
+}

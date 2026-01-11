@@ -140,19 +140,21 @@
     </script>
 
     <!-- INSTAGRAM IN-APP BROWSER WARNING -->
-    <div id="igWarning" class="ig-warning">
+    <div id="igBlock" class="ig-warning">
         <div class="ig-warning-box">
-            <h2>⚠ Unsupported Browser</h2>
+            <h2>🚫 Unsupported Browser</h2>
             <p>
-                Instagram browser does not support background music.<br>
-                Please open this website in a real browser.
+            This website does not work inside Instagram.<br><br>
+            Please open it in a real browser<br>
+            (Chrome, Safari, Edge, etc.)
             </p>
-            <div class="ig-btn-group">
-                <button onclick="openExternal()">Open in Browser</button>
-                <button onclick="closeIGWarning()">Continue Anyway</button>
-            </div>
+            <button onclick="openExternal()">Open in Browser</button>
+            <p style="font-size:12px;opacity:.6;margin-top:10px">
+            Tap ⋮ → Open in browser if the button doesn't work
+            </p>
         </div>
     </div>
+
 
     <!-- custom js-->
     <script src="js/script.js"></script>
