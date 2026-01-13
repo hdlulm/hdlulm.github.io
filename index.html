@@ -82,58 +82,38 @@
         </div>
     </section>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-    let player;
-    let playerReady = false;
+    <audio id="bgMusic" src="music.mp3" loop></audio>
 
-    const VIDEO_ID = "xfM4X6inBUk";
+
+    <script>
+    let playerReady = true;
+
     const enterScreen = document.getElementById("enterScreen");
     const enterBtn = document.getElementById("enterBtn");
     const musicBtn = document.getElementById("musicToggle");
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player("yt-player", {
-            videoId: VIDEO_ID,
-            playerVars: {
-                controls: 0,
-                loop: 1,
-                playlist: VIDEO_ID
-            },
-            events: {
-                onReady: () => playerReady = true,
-                onStateChange: (e) => {
-                    musicBtn.textContent =
-                        e.data === YT.PlayerState.PLAYING
-                            ? "🔇 Music OFF"
-                            : "🔊 Music ON";
-                }
-            }
-        });
-    }
+    const music = document.getElementById("bgMusic");
 
     // WAJIB KLIK ENTER
     enterBtn.addEventListener("click", function () {
         if (!playerReady) return;
 
-        player.playVideo();
-        player.unMute();
-        player.setVolume(20);
+        music.volume = 0.2;
+        music.play();
 
         enterScreen.style.opacity = "0";
         setTimeout(() => enterScreen.style.display = "none", 500);
+
+        musicBtn.textContent = "🔇 Music OFF";
     });
 
     // TOGGLE ON / OFF
     musicBtn.addEventListener("click", function () {
-        if (!playerReady) return;
-
-        const state = player.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
+        if (music.paused) {
+            music.play();
+            musicBtn.textContent = "🔇 Music OFF";
         } else {
-            player.playVideo();
-            player.unMute();
+            music.pause();
+            musicBtn.textContent = "🔊 Music ON";
         }
     });
     </script>
